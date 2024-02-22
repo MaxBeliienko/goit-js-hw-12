@@ -1,2 +1,23 @@
-(function(){const r=document.createElement("link").relList;if(r&&r.supports&&r.supports("modulepreload"))return;for(const e of document.querySelectorAll('link[rel="modulepreload"]'))s(e);new MutationObserver(e=>{for(const t of e)if(t.type==="childList")for(const o of t.addedNodes)o.tagName==="LINK"&&o.rel==="modulepreload"&&s(o)}).observe(document,{childList:!0,subtree:!0});function i(e){const t={};return e.integrity&&(t.integrity=e.integrity),e.referrerPolicy&&(t.referrerPolicy=e.referrerPolicy),e.crossOrigin==="use-credentials"?t.credentials="include":e.crossOrigin==="anonymous"?t.credentials="omit":t.credentials="same-origin",t}function s(e){if(e.ep)return;e.ep=!0;const t=i(e);fetch(e.href,t)}})();
+import{a as g,S as L,i as m}from"./assets/vendor-da186403.js";(function(){const t=document.createElement("link").relList;if(t&&t.supports&&t.supports("modulepreload"))return;for(const e of document.querySelectorAll('link[rel="modulepreload"]'))l(e);new MutationObserver(e=>{for(const a of e)if(a.type==="childList")for(const n of a.addedNodes)n.tagName==="LINK"&&n.rel==="modulepreload"&&l(n)}).observe(document,{childList:!0,subtree:!0});function s(e){const a={};return e.integrity&&(a.integrity=e.integrity),e.referrerPolicy&&(a.referrerPolicy=e.referrerPolicy),e.crossOrigin==="use-credentials"?a.credentials="include":e.crossOrigin==="anonymous"?a.credentials="omit":a.credentials="same-origin",a}function l(e){if(e.ep)return;e.ep=!0;const a=s(e);fetch(e.href,a)}})();const o={form:document.querySelector(".search-form"),input:document.querySelector(".form-input"),btn:document.querySelector(".form-btn"),gallery:document.querySelector(".gallery"),load_more:document.querySelector(".load-more-button")};async function u(r,t,s){o.load_more.classList.add("loader");const l="42331479-49dc52f8d5778d01c5913f31a";return await g.get("https://pixabay.com/api/",{params:{key:l,q:r,image_type:"photo",orientation:"horizontal",safesearch:"true",per_page:s,page:t}})}function b(r){return r.hits.map(({webformatURL:s,largeImageURL:l,tags:e,likes:a,views:n,comments:p,downloads:y})=>`<li class="gallery-item">
+    <a href="${l}"><img src="${s}" alt="${e}"/>
+    <ul class="item-data-list">
+    <li class="data-list-item">
+    <h3 class="data-item-header">Likes</h3>
+    <p class="data-item-text">${a}</p>
+    </li>
+    <li class="data-list-item">
+    <h3 class="data-item-header">Views</h3>
+    <p class="data-item-text">${n}</p>
+    </li>
+    <li class="data-list-item">
+    <h3 class="data-item-header">Comments</h3>
+    <p class="data-item-text">${p}</p>
+    </li>
+    <li class="data-list-item">
+    <h3 class="data-item-header">Downloads</h3>
+    <p class="data-item-text">${y}</p>
+    </li>
+    </ul>
+    </a>
+    </li>`).join("")}function f(r){const t=b(r);o.gallery.insertAdjacentHTML("beforeend",t),new L(".gallery a").refresh()}function h(){o.load_more.classList.add("hidden")}function v(){o.load_more.classList.remove("hidden")}let d=9,i,c;function w(r){r.preventDefault(),h(),c=r.target.elements.form_input.value.trim(),i=1,o.gallery.innerHTML="",c!==""&&u(c,i,d).then(t=>{const{data:s}=t;if(s.hits.length!==0){f(s);let l=o.gallery.firstChild.getBoundingClientRect().height;window.scrollBy({behavior:"smooth",top:l}),Math.ceil(s.totalHits/d)<=i?m.show({message:"We're sorry, but you've reached the end of search results."}):v()}else m.show({message:"Sorry, there are no images matching your search query. Please try again!"})}).catch(t=>console.log(t)).finally(o.load_more.classList.remove("loader")),r.target.reset()}function _(){i+=1,u(c,i,d).then(r=>{const{data:t}=r;f(t),Math.ceil(t.totalHits/d)===i&&(h(),m.show({message:"We're sorry, but you've reached the end of search results."}))}).finally(o.load_more.classList.remove("loader"))}o.form.addEventListener("submit",w);o.load_more.addEventListener("click",_);
 //# sourceMappingURL=commonHelpers.js.map
