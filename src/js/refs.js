@@ -4,4 +4,5 @@ export const refs = {
   btn: document.querySelector('.form-btn'),
   gallery: document.querySelector('.gallery'),
   load_more: document.querySelector('.load-more-button'),
+  loader: document.querySelector('.load'),
 };

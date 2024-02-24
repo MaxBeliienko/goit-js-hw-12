@@ -49,7 +49,7 @@ export function onFormSubmit(e) {
         }
       })
       .catch(error => console.log(error))
-      .finally(refs.load_more.classList.remove('loader'));
+      .finally(refs.loader.classList.remove('loader'));
   }
   e.target.reset();
 }
@@ -67,5 +67,5 @@ export function onLoadMoreClick() {
         });
       }
     })
-    .finally(refs.load_more.classList.remove('loader'));
+    .finally(refs.loader.classList.remove('loader'));
 }
