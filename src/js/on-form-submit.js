@@ -59,6 +59,7 @@ export function onLoadMoreClick() {
   pixabayApi(inputValue, page, per_page)
     .then(response => {
       const { data } = response;
+
       galleryMarkup(data);
       if (Math.ceil(data.totalHits / per_page) === page) {
         hideLoader();

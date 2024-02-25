@@ -42,9 +42,10 @@ function templateGallery(obj) {
   return template;
 }
 
+let gallery = new SimpleLightbox('.gallery a');
+
 export function galleryMarkup(obj) {
   const markup = templateGallery(obj);
   refs.gallery.insertAdjacentHTML('beforeend', markup);
-  let gallery = new SimpleLightbox('.gallery a');
   gallery.refresh();
 }
